@@ -25,18 +25,31 @@ import App from './App';
 
 // Импорты React нужны были в старых версиях в каждый файл
 
-const text = 'Hello World'    //Можно помещаться все кроме объектов
-const elem = (  //Всегда нужно оборачиать в родительский блок
-  <div>
-    <h2>Текст: {text}, сложение: {2+3}</h2>
-    <input type="text" />
-    <button tabIndex={0}>Click</button>
-  </div>    //Всегда у одиночных тегов есть самозакрывающийся тег
-  // Атрибуты пишутся в камел кейсе
-  // Классы пишутся как className
-)
+// const text = 'Hello World'    //Можно помещаться все кроме объектов
+// const elem = (  //Всегда нужно оборачиать в родительский блок
+//   <div>
+//     <h2>Текст: {text}, сложение: {2+3}</h2>
+//     <input type="text" />
+//     <button tabIndex={0}>Click</button>
+//   </div>    //Всегда у одиночных тегов есть самозакрывающийся тег
+//   // Атрибуты пишутся в камел кейсе
+//   // Классы пишутся как className
+// )
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   elem
+// );
+
+
+
+// ************ Elements and components
+// Компоненты это функции которые могут возвращать JSX элементы
+// Компоненты создаются когда могут переиспользоваться в других участках (как блоки в бэм)
+// Компоненты могут состоять из компонентов
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  elem
+  <App/>
 );
