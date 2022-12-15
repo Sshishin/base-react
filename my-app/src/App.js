@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {StrictMode} from 'react';
 import './App.css';
 
 
@@ -20,7 +20,7 @@ const Header = () => {    //Пишем свой компонент
 
 class Field extends React.Component {
   render() {
-    const holder = 'Enter here';
+    const holder = 'Enter here!';
     return <input placeholder={holder} type="text"/>
   }
 }
@@ -38,7 +38,9 @@ function Button() {
 function App() {
   return (    //Вставляем ниже свой компонент чтобы передать его на index.js и отрендерить
     <div className="App">
-      <Header/>
+      <StrictMode>
+          <Header/>
+      </StrictMode>
       <Field/>
       <Button/>
     </div>
