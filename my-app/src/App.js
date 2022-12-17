@@ -35,6 +35,18 @@ function Button() {
   return <button>{logged ? 'Good' : text}</button>
 }
 
+// Свойства компонентов (props)
+// Props это объект со свойтсвами которые мы передадим
+
+const WhoAmI = (props) => {   //Длаее указывае значения для props при передаче компонента с помощью атрибутов
+  return (
+    <div>
+      <h1> My name is {props.name()}, surname - {props.surname} </h1>
+        <a href="{props.link}">My profile</a>
+    </div>
+  )
+}
+
 function App() {
   return (    //Вставляем ниже свой компонент чтобы передать его на index.js и отрендерить
     <div className="App">
@@ -43,6 +55,17 @@ function App() {
       </StrictMode>
       <Field/>
       <Button/>
+      <WhoAmI 
+        name={() => {return 'Sergey'}}
+        surname="Shishin"
+        link="google.com"
+      />
+      <WhoAmI 
+        name={() => {return 'John'}}
+        surname="Not Shishin"
+        link="yandex.com"
+      />
+
     </div>
   );
 }
