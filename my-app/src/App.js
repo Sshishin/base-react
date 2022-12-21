@@ -38,13 +38,55 @@ function Button() {
 // Свойства компонентов (props)
 // Props это объект со свойтсвами которые мы передадим
 
-const WhoAmI = (props) => {   //Длаее указывае значения для props при передаче компонента с помощью атрибутов
-  return (
-    <div>
-      <h1> My name is {props.name()}, surname - {props.surname} </h1>
-        <a href="{props.link}">My profile</a>
-    </div>
-  )
+// const WhoAmI = (props) => {   //Длаее указывае значения для props при передаче компонента с помощью атрибутов
+//   return (
+//     <div>
+//       <h1> My name is {props.name()}, surname - {props.surname} </h1>
+//         <a href="{props.link}">My profile</a>
+//     </div>
+//   )
+// }
+
+class WhoAmI extends React.Component {      //Использование классов для демонстрации работы с состояниями
+    constructor(props) {     //Конструктор в данном случае лушче не использовать где нет каких-то дополнительных действий
+       super(props)
+       this.state = {   //Как раз таки объект состояния
+            years: 27,
+            text: '+++'
+       }
+    }
+
+    // Такая запись используется если новый state не зависит от предыдущего
+
+    // nextYear = () => {      //Здесь можно применять только стрелочную функцию
+    //     console.log('+++')
+    //     this.setState({     //Изменяем состояние 
+    //         years: this.state.years + 1
+    //     })
+    // }
+
+
+    // Такая запись используется если новый state ЗАВИСИТ от предыдущего
+    // Такой вариант не допускает того чтобы счетчик сбился и всегда успевает подрисовывать новые данные (потому что ждет выполнения предыдущей операции так как это асинхронная операция)
+    // Меняет только указанные значения и не трогает которые указаны не были
+
+    nextYear = () => {      //Здесь можно применять только стрелочную функцию
+        this.setState(state => ({       //Здесь обертка в скобки заменяет return
+            years: state.years + 1,
+        
+        }))
+    }
+
+    render() {
+        const {name, surname, link} = this.props    //Вытаскиваем деструктуризированные элементы из объекта пропс
+        return (
+            <div>
+                <button onClick={this.nextYear}>{this.state.text}</button>
+              <h1> My name is {name}, surname - {surname}, age - {this.state.years} </h1>
+                <a href={link}>My profile</a>
+            </div>
+          )
+    }
 }
 
 function App() {
@@ -55,13 +97,27 @@ function App() {
       </StrictMode>
       <Field/>
       <Button/>
-      <WhoAmI 
+      {/* <WhoAmI 
         name={() => {return 'Sergey'}}
         surname="Shishin"
         link="google.com"
       />
       <WhoAmI 
         name={() => {return 'John'}}
+        surname="Not Shishin"
+        link="yandex.com"
+      /> */}
+
+
+      {/* Тестируем пропсы для классовых компонентов */}
+
+      <WhoAmI 
+        name='Sergey'
+        surname="Shishin"
+        link="google.com"
+      />
+      <WhoAmI 
+        name='John'
         surname="Not Shishin"
         link="yandex.com"
       />
