@@ -52,7 +52,8 @@ class WhoAmI extends React.Component {      //Использование кла�
        super(props)
        this.state = {   //Как раз таки объект состояния
             years: 27,
-            text: '+++'
+            text: '+++',
+            position: ''
        }
     }
 
@@ -77,13 +78,24 @@ class WhoAmI extends React.Component {      //Использование кла�
         }))
     }
 
+    commitInputChanges = (e) => {
+        this.setState({
+            position: e.target.value
+        })
+    }
+
     render() {
         const {name, surname, link} = this.props    //Вытаскиваем деструктуризированные элементы из объекта пропс
+        const {position, years, text} = this.state
         return (
             <div>
-                <button onClick={this.nextYear}>{this.state.text}</button>
-              <h1> My name is {name}, surname - {surname}, age - {this.state.years} </h1>
+                <button onClick={this.nextYear}>{text}</button>
+              <h1> My name is {name}, surname - {surname}, age - {years}, position - {position} </h1>
                 <a href={link}>My profile</a>
+                <form>
+                  <span>Введите должность</span>
+                  <input type="text" onChange={this.commitInputChanges}/>
+                </form>
             </div>
           )
     }
